@@ -5,12 +5,15 @@ import dao.SellerDao;
 import entities.Department;
 import entities.Seller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -29,5 +32,10 @@ public class Program {
         for (Seller e : sellers) {
             System.out.println(e);
         }
+
+        System.out.println("\n === Teste 4: seller insert ===");
+        Seller newSeller = new Seller(null, "Camille", "ca@gmail.com", new Date(), 20000.0, new Department(2, null));
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New id = " + newSeller.getId());
     }
 }
